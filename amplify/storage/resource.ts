@@ -1,3 +1,4 @@
+import { defineStorage } from '@aws-amplify/backend';
 import {
   createManagedAuthAdapter,
   createStorageBrowser,
