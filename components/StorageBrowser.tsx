@@ -4,7 +4,7 @@ import '@aws-amplify/ui-react-storage/styles.css';
 import { Amplify } from 'aws-amplify';
 import config from '../amplify_outputs.json';
 
-// Configure Amplify using the imported configuration
+// Configure Amplify using the imported configurations
 Amplify.configure(config);
 
 // Create the StorageBrowser component with Amplify authentication
