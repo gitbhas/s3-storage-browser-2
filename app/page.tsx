@@ -12,40 +12,43 @@ import { StorageBrowser } from '../components/StorageBrowser';
 import { fetchUserAttributes } from "aws-amplify/auth";
 Amplify.configure(outputs);
 
-const client = generateClient<Schema>();
+//const client = generateClient<Schema>();
+
+interface UserAttributes {
+  email: string;
+  email_verified: string;
+  preferred_username: string;
+  sub: string;
+}
+
+
 
 export default function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
-  function listTodos() {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
+  const [userData, setUserData] = useState<UserAttributes | null>(null);
+
+  async function session() {
+    try {
+      const data = await Auth.fetchUserAttributes();
+      setUserData(data as UserAttributes);
+    } catch (error) {
+      console.error("Error fetching user attributes:", error);
+    }
   }
 
   useEffect(() => {
-    listTodos();
-  }, []);
+    session();
+  }, []); // Empty dependency array means this runs once when component mounts
 
-  function createTodo() {
-    client.models.Todo.create({
-      content: window.prompt("Todo content"),
-    });
-  }
-  async function attributes() {
-    const data= await fetchUserAttributes();
-    console.log(data)
-      }
-
-  return (
+return (
     <Authenticator hideSignUp={true}>
       {({ signOut, user }) => (
         <main>
-          <h1>Hello {user?.username}</h1>
+          <h1>Hello {userData?.preferred_username}</h1>
           <button onClick={signOut}>Sign out</button>
-          <button onClick={attributes}>getatt</button>
+          {/* <button onClick={attributes}>getatt</button> */}
         {/* StorageBrowser Component */}
-        <h2>DDPS TAP Files</h2>
+        <h2>DDPS Files</h2>
           <StorageBrowser />
         </main>
       )}
