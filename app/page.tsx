@@ -8,6 +8,7 @@ import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import { Authenticator } from '@aws-amplify/ui-react';
+import * as Auth from "aws-amplify/auth";
 import { StorageBrowser } from '../components/StorageBrowser';
 import { fetchUserAttributes } from "aws-amplify/auth";
 Amplify.configure(outputs);
