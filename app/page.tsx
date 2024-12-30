@@ -9,6 +9,7 @@ import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import { Authenticator } from '@aws-amplify/ui-react';
 import { StorageBrowser } from '../components/StorageBrowser';
+import { fetchUserAttributes } from "aws-amplify/auth";
 Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
@@ -31,6 +32,10 @@ export default function App() {
       content: window.prompt("Todo content"),
     });
   }
+  async function attributes() {
+    const data= await fetchUserAttributes();
+    console.log(data)
+      }
 
   return (
     <Authenticator hideSignUp={true}>
@@ -38,6 +43,7 @@ export default function App() {
         <main>
           <h1>Hello {user?.username}</h1>
           <button onClick={signOut}>Sign out</button>
+          <button onClick={attributes}>getatt</button>
         {/* StorageBrowser Component */}
         <h2>DDPS TAP Files</h2>
           <StorageBrowser />
