@@ -1,12 +1,12 @@
 import { defineBackend } from '@aws-amplify/backend';
 import { auth } from './auth/resource.js';
 import { data } from './data/resource.js';
-import { tapbucket } from './storage/resource';
+import { storage } from './storage/resource';
 import { myFirstFunction } from './my-first-function/resource'
 defineBackend({
   auth,
   data,
-  tapbucket,
+  storage,
   myFirstFunction,
 });
 // const backend = defineBackend({
