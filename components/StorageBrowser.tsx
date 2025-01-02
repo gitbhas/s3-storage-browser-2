@@ -10,7 +10,9 @@ import config from '../amplify_outputs.json';
 Amplify.configure(config);
 
 const defaultPrefixes = [
-  'dags/' 
+  'public/',
+  (identityId: string) => `protected/${identityId}/`,
+  (identityId: string) => `private/${identityId}/`,
 ];
 // Create the StorageBrowser component with Amplify authentication
 export const { StorageBrowser } = createStorageBrowser(
