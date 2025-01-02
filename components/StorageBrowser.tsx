@@ -9,9 +9,15 @@ import config from '../amplify_outputs.json';
 // Configure Amplify using the imported configuration
 Amplify.configure(config);
 
+const defaultPrefixes = [
+  'dags/' 
+];
 // Create the StorageBrowser component with Amplify authentication
 export const { StorageBrowser } = createStorageBrowser(
   {
   config: createAmplifyAuthAdapter(),
+  options: {
+    defaultPrefixes
+  },
     });
  
