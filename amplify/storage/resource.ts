@@ -1,6 +1,6 @@
 import { defineStorage } from '@aws-amplify/backend';
 
-export const tapbucket = defineStorage({
+export const storage = defineStorage({
   name: 'ddps-dev-airflow',
   isDefault: true, // identify your default storage bucket (required)
   access: (allow) => ({
