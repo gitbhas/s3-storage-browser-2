@@ -12,6 +12,7 @@ import { myFirstFunction } from './my-first-function/resource'
 const backend = defineBackend({
   auth,
   data,
+  storage,
 });
 backend.addOutput({
   storage: {
