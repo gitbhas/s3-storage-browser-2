@@ -9,17 +9,17 @@ import config from '../amplify_outputs.json';
 // Configure Amplify using the imported configuration
 Amplify.configure(config);
 
-const defaultPrefixes = [
-  'public/',
-  (identityId: string) => `protected/${identityId}/`,
-  (identityId: string) => `private/${identityId}/`,
-];
+// const defaultPrefixes = [
+//   'public/',
+//   (identityId: string) => `protected/${identityId}/`,
+//   (identityId: string) => `private/${identityId}/`,
+// ];
 // Create the StorageBrowser component with Amplify authentication
 export const { StorageBrowser } = createStorageBrowser(
   {
   config: createAmplifyAuthAdapter(),
-  options: {
-    defaultPrefixes
-  },
+  // options: {
+  //   defaultPrefixes
+  // },
     });
  
