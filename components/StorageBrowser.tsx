@@ -1,40 +1,29 @@
-import React from 'react';
-// import { createAmplifyAuthAdapter, createStorageBrowser } from '@aws-amplify/ui-react-storage/browser';
-import '@aws-amplify/ui-react-storage/styles.css';
-import { Amplify } from 'aws-amplify';
-//import * as Auth from "aws-amplify/auth";
-import config from '../amplify_outputs.json';
-//import { CognitoIdentity } from '@aws-sdk/client-cognito-identity';
 import {
+  createManagedAuthAdapter,
   createStorageBrowser,
-  createAmplifyAuthAdapter,
-  elementsDefault,
-} from "@aws-amplify/ui-react-storage/browser";
+  AWSTemporaryCredentials,
+} from '@aws-amplify/ui-react-storage/browser';
+import "@aws-amplify/ui-react-storage/styles.css";
+import { defineAuth, secret } from '@aws-amplify/backend';
 
-// Configure Amplify using the imported configuration
-Amplify.configure(config);
-
-const defaultPrefixes = [
-  'dags/',
-  (identityId: string) => `protected/${identityId}/`,
-  (identityId: string) => `private/${identityId}/`,
-];
-// Create the StorageBrowser component with Amplify authentication
-// export const { StorageBrowser } = createStorageBrowser(
-//   {
-//   config: createAmplifyAuthAdapter(),
-//   options: {
-//     defaultPrefixes
-//   },
-//     });
 export const { StorageBrowser } = createStorageBrowser({
-      elements: elementsDefault, // replace to customize your UI
-      config: createAmplifyAuthAdapter({
-      options: {
-      defaultPrefixes
+  config: createManagedAuthAdapter({
+    credentialsProvider: async (options?: { forceRefresh?: boolean }) => {
+      // return your credentials object
+      return {
+        credentials: {
+          accessKeyId: secret('accessKeyId'),
+          secretAccessKey: secret('secretAccessKey'),
+          sessionToken: secret('sessionToken'),
+          expiration: new Date();
         },
-      }),
-    });
- 
-
- 
+      }
+    },
+    // AWS `region` and `accountId`
+    region: 'us-east-1',
+    accountId: '012693954776',
+    // call `onAuthStateChange` when end user auth state changes 
+    // to clear sensitive data from the `StorageBrowser` state
+    registerAuthListener: (onAuthStateChange) => {},
+  })
+});
