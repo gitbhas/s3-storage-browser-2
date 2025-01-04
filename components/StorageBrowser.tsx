@@ -15,7 +15,7 @@ export const { StorageBrowser } = createStorageBrowser({
           accessKeyId: secret('accessKeyId'),
           secretAccessKey: secret('secretAccessKey'),
           sessionToken: secret('sessionToken'),
-          expiration: new Date();
+          expiration: new Date(),
         },
       }
     },
