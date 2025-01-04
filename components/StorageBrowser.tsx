@@ -14,7 +14,7 @@ Amplify.configure(config);
 //   (identityId: string) => `protected/${identityId}/`,
 //   (identityId: string) => `private/${identityId}/`,
 // ];
-// Create the StorageBrowser component with Amplify authentication
+// Create the StorageBrowser component with Amplify authentications
 export const { StorageBrowser } = createStorageBrowser(
   {
   config: createAmplifyAuthAdapter(),
