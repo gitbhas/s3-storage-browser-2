@@ -4,6 +4,7 @@ import { data } from './data/resource';
 import { defineStorage } from '@aws-amplify/backend';
 // import { storage } from './storage/resource';
 import { myFirstFunction } from './my-first-function/resource'
+//reload
 // defineBackend({
 //   auth,
 //   data,
