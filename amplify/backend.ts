@@ -18,11 +18,24 @@ const backend = defineBackend({
 backend.addOutput({
   storage: {
     aws_region: "us-east-1",
-    bucket_name: "ddps-dev-airflow",
+    //bucket_name: "ddps-dev-airflow",
     buckets: [
       {
-        name: "airflow",
+        name: "devairflow",
         bucket_name: "ddps-dev-airflow",
+        aws_region: "us-east-1",
+        paths: {
+          "dags/*": {
+            guest: ["get", "list"],
+            authenticated: ["get", "list", "write"],
+          },
+          // provide all paths that is given proper access with in the s3 bucket
+          // Ref for access possible : https://docs.amplify.aws/react/build-a-backend/storage/authorization/#available-actions 
+        },
+      },
+      {
+        name: "tstairflow",
+        bucket_name: "ddps-tst-airflow",
         aws_region: "us-east-1",
         paths: {
           "dags/*": {
