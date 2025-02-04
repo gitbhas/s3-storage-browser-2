@@ -26,7 +26,7 @@ backend.addOutput({
         bucket_name: "ddps-test2-edl-tap",
         aws_region: "us-east-1",
         paths: {
-           "TAP/{entity_id}/*": {
+           "TAP/*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write"],
           },
