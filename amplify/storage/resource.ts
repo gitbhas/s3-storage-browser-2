@@ -1,6 +1,6 @@
 import { defineStorage } from '@aws-amplify/backend';
 export const storage = defineStorage({
-  name: 'ddps-dev-airlow',
+  name: 'ddps-dev-ui',
   access: (allow) => ({
     'public/*': [
       allow.guest.to(['read']),
