@@ -45,6 +45,29 @@ const backend = defineBackend({
 //     ],
 //   },
 // });
+// backend.addOutput({
+//   storage: {
+//     aws_region: "us-east-1",
+//     bucket_name: "ddps-test2-edl-tap",
+//     buckets: [
+//       {
+//         name: "tst2tap",
+//         bucket_name: "ddps-test2-edl-tap",
+//         aws_region: "us-east-1",
+//         paths: {
+//           "metadata/*": {
+//             guest: ["get", "list"],
+//             authenticated: ["get", "list", "write"],
+//           },
+//           "TAP/*": {
+//             guest: ["get", "list"],
+//             authenticated: ["get", "list", "write"],
+//           },
+//         },
+//       }
+//     ],
+//   },
+// });
 backend.addOutput({
   storage: {
     aws_region: "us-east-1",
@@ -55,11 +78,7 @@ backend.addOutput({
         bucket_name: "ddps-test2-edl-tap",
         aws_region: "us-east-1",
         paths: {
-          "metadata/*": {
-            guest: ["get", "list"],
-            authenticated: ["get", "list", "write"],
-          },
-          "TAP/*": {
+           "{entity_id}/*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write"],
           },
