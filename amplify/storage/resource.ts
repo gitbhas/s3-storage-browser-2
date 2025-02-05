@@ -20,8 +20,8 @@ export const storage = defineStorage({
   name: 'ddps-dev-ui',
   access: (allow) => ({
      'upload/{entity_id}/*': [
-      allow.authenticated.to(['read', 'write', 'delete'])
-      //allow.entity('identity').to(['read', 'write', 'delete'])
+      allow.authenticated.to(['read'])
+      allow.entity('identity').to(['read', 'write', 'delete'])
     ]
   })
 });
