@@ -51,15 +51,11 @@ backend.addOutput({
     bucket_name: "ddps-test2-edl-tap",
     buckets: [
       {
-        name: "tst2tap",
-        bucket_name: "ddps-test2-edl-tap",
+        name: "340b",
+        bucket_name: "ddps-340b-upload",
         aws_region: "us-east-1",
-        paths: {
-          "metadata/*": {
-            guest: ["get", "list"],
-            authenticated: ["get", "list", "write"],
-          },
-          "TAP/*": {
+        paths: { 
+          "/*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write"],
           },
