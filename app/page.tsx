@@ -39,7 +39,7 @@ export default function App() {
 
   useEffect(() => {
     session();
-  }, []); // Empty dependency array means this runs once when component mounts
+  }, []); // Empty dependency array means this runs once when component mounts //
 
 return (
     <Authenticator hideSignUp={true}>
