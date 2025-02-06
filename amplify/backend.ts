@@ -12,9 +12,17 @@ import { Amplify} from 'aws-amplify';
 //   storage,
 //   myFirstFunction,
 // });
+// First define your storage
+const storage = defineStorage({
+  name: 'storage', // Give your storage stack a name
+  bucket: {
+    name: 'ddps-test2-edl-tap' // Your bucket name
+  }
+});
 const backend = defineBackend({
   auth,
-  data 
+  data ,
+  storage
 });
 backend.addOutput({
   storage: {
