@@ -1,4 +1,10 @@
-// import { defineStorage } from '@aws-amplify/backend';
+import { defineStorage } from '@aws-amplify/backend';
+const storage = defineStorage({
+  name: 'storage', // Give your storage stack a name
+  bucket: {
+    name: 'ddps-test2-edl-tap' // Your bucket name
+  }
+});
 // export const storage = defineStorage({
 //   name: 'ddps-dev-ui',
 //   access: (allow) => ({
