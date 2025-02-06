@@ -28,7 +28,7 @@ backend.addOutput({
         bucket_name: "ddps-340b-upload",
         aws_region: "us-east-1",
         paths: { 
-          "landing/${cognito-identity.amazonaws.com:sub}/*": {
+          "landing/*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write"],
           },
