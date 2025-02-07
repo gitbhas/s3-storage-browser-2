@@ -9,7 +9,7 @@ import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import { Authenticator } from '@aws-amplify/ui-react';
 import * as Auth from "aws-amplify/auth";
-import { fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
+//import { fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
 import { StorageBrowser } from '../components/StorageBrowser';
 import { fetchUserAttributes } from "aws-amplify/auth";
 Amplify.configure(outputs);
@@ -23,6 +23,7 @@ interface UserAttributes {
   email_verified: string;
   preferred_username: string;
   sub: string;
+  entity_id?: string;
 }
 
 
@@ -30,14 +31,12 @@ interface UserAttributes {
 export default function App() {
 
   const [userData, setUserData] = useState<UserAttributes | null>(null);
-  const currentUser = await getCurrentUser();
-  const userAttributes = await fetchUserAttributes();
-  const entity_id = currentUser.userId;
+   
 
   async function session() {
     try {
       const data = await Auth.fetchUserAttributes();
-      setUserData(data as UserAttributes);
+      setUserData({data, entity_id: currentUser.userId} as UserAttributes);
     } catch (error) {
       console.error("Error fetching user attributes:", error);
     }
