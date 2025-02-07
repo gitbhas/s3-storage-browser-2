@@ -1,4 +1,4 @@
-ntitye client";
+"use client";
 
 import { useState, useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
@@ -9,34 +9,31 @@ import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import { Authenticator } from '@aws-amplify/ui-react';
 import * as Auth from "aws-amplify/auth";
-//import { fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
 import { StorageBrowser } from '../components/StorageBrowser';
 import { fetchUserAttributes } from "aws-amplify/auth";
 Amplify.configure(outputs);
 
 //const client = generateClient<Schema>();
-// Get the user's identity ID
-
 
 interface UserAttributes {
   email: string;
   email_verified: string;
   preferred_username: string;
   sub: string;
-  entity_id?: string;
+  'custom:entity_id'?: string;  // Add this line for entity_id
 }
-
-
 
 export default function App() {
 
   const [userData, setUserData] = useState<UserAttributes | null>(null);
-   
 
   async function session() {
     try {
       const data = await Auth.fetchUserAttributes();
-      setUserData({data, entity_id: currentUser.userId} as UserAttributes);
+      const entity_id = data['custom:entity_id']; // Get the entity_id from custom attributes
+      setUserData(data as UserAttributes);
+      // You can also console.log to verify the entity_id
+      console.log('Entity ID:', entity_id);
     } catch (error) {
       console.error("Error fetching user attributes:", error);
     }
