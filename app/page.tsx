@@ -9,14 +9,14 @@ import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
 import { Authenticator } from '@aws-amplify/ui-react';
 import * as Auth from "aws-amplify/auth";
+import { fetchUserAttributes, getCurrentUser } from 'aws-amplify/auth';
 import { StorageBrowser } from '../components/StorageBrowser';
 import { fetchUserAttributes } from "aws-amplify/auth";
 Amplify.configure(outputs);
 
 //const client = generateClient<Schema>();
 // Get the user's identity ID
-const userInfo = await Auth.currentUserInfo();
-const entity_id = userInfo.id;
+
 
 interface UserAttributes {
   email: string;
@@ -30,6 +30,9 @@ interface UserAttributes {
 export default function App() {
 
   const [userData, setUserData] = useState<UserAttributes | null>(null);
+  const currentUser = await getCurrentUser();
+  const userAttributes = await fetchUserAttributes();
+  const identity_id = currentUser.userId;
 
   async function session() {
     try {
