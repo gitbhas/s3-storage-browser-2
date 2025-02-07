@@ -14,6 +14,9 @@ import { fetchUserAttributes } from "aws-amplify/auth";
 Amplify.configure(outputs);
 
 //const client = generateClient<Schema>();
+// Get the user's identity ID
+const userInfo = await Auth.currentUserInfo();
+const entity_id = userInfo.id;
 
 interface UserAttributes {
   email: string;
