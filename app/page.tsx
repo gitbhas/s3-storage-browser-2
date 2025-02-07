@@ -1,4 +1,4 @@
-"use client";
+ntitye client";
 
 import { useState, useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
@@ -32,7 +32,7 @@ export default function App() {
   const [userData, setUserData] = useState<UserAttributes | null>(null);
   const currentUser = await getCurrentUser();
   const userAttributes = await fetchUserAttributes();
-  const identity_id = currentUser.userId;
+  const entity_id = currentUser.userId;
 
   async function session() {
     try {
