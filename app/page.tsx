@@ -20,7 +20,8 @@ interface UserAttributes {
   email_verified: string;
   preferred_username: string;
   sub: string;
-  'custom:entity_id'?: string;  // Add this line for entity_id
+  entity_id: string;  // Add this line for entity_id
+   // 'custom:entity_id'?: string;  // Add this line for entity_id
 }
 
 export default function App() {
