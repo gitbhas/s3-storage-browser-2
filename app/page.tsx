@@ -20,8 +20,9 @@ interface UserAttributes {
   email_verified: string;
   preferred_username: string;
   sub: string;
-  'custom:entity_id': string;  // Change entity_id to custom:entity_id to match Cognito's format
 }
+
+
 
 export default function App() {
 
@@ -30,18 +31,7 @@ export default function App() {
   async function session() {
     try {
       const data = await Auth.fetchUserAttributes();
-      // Transform the data to match your UserAttributes interface
-      const transformedData: UserAttributes = {
-      email: data.email,
-      email_verified: data.email_verified,
-      preferred_username: data.preferred_username,
-      sub: data.sub,
-      'custom:entity_id': data['custom:entity_id']
-    };
       setUserData(data as UserAttributes);
-      // You can also console.log to verify the entity_id
-      // You can log to verify
-     console.log('Entity ID:', data['custom:entity_id']);
     } catch (error) {
       console.error("Error fetching user attributes:", error);
     }
@@ -55,7 +45,7 @@ return (
     <Authenticator hideSignUp={true}>
       {({ signOut, user }) => (
         <main>
-          <h1>Hello {userData?.preferred_username} {userData?.['custom:entity_id']}</h1>
+          <h1>Hello {userData?.preferred_username}</h1>
           <button onClick={signOut}>Sign out</button>
           {/* <button onClick={attributes}>getatt</button> */}
         {/* StorageBrowser Component */}
