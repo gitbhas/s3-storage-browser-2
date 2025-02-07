@@ -47,7 +47,7 @@ return (
     <Authenticator hideSignUp={true}>
       {({ signOut, user }) => (
         <main>
-          <h1>Hello {userData?.preferred_username}</h1>
+          <h1>Hello {userData?.preferred_username} {entity_id}</h1>
           <button onClick={signOut}>Sign out</button>
           {/* <button onClick={attributes}>getatt</button> */}
         {/* StorageBrowser Component */}
