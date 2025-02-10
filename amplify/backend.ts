@@ -21,14 +21,18 @@ const backend = defineBackend({
 backend.addOutput({
   storage: {
     aws_region: "us-east-1",
-    bucket_name: "ddps-test2-edl-tap",
+    bucket_name: "ddps-test-v4-mtf",
     buckets: [
       {
         name: "340b",
-        bucket_name: "ddps-340b-upload",
+        bucket_name: "ddps-test-v4-mtf",
         aws_region: "us-east-1",
         paths: { 
           "landing/*": {
+            guest: ["get", "list"],
+            authenticated: ["get", "list", "write"],
+          },
+           "archive/*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write"],
           },
