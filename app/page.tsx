@@ -25,7 +25,6 @@ interface UserAttributes {
 
 
 export default function App() {
-
   const [userData, setUserData] = useState<UserAttributes | null>(null);
 
   async function session() {
@@ -39,17 +38,17 @@ export default function App() {
 
   useEffect(() => {
     session();
-  }, []); // Empty dependency array means this runs once when component mounts //
+  }, []);
 
-return (
+  return (
     <Authenticator hideSignUp={true}>
       {({ signOut, user }) => (
         <main>
-          <h1>Hello {userData?.preferred_username}</h1>
+          <h1>
+            Hello {userData?.preferred_username || user?.username || 'User'}
+          </h1>
           <button onClick={signOut}>Sign out</button>
-          {/* <button onClick={attributes}>getatt</button> */}
-        {/* StorageBrowser Component */}
-        <h2>DDPS Files</h2>
+          <h2>DDPS Files</h2>
           <StorageBrowser />
         </main>
       )}
