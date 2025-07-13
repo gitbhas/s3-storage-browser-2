@@ -48,7 +48,7 @@ export default function App() {
             Hello {userData?.preferred_username || user?.username || 'User'}
           </h1>
           <button onClick={signOut}>Sign out</button>
-          <h2>DDPS Files</h2>
+          <h2>PDE Data</h2>
           <StorageBrowser />
         </main>
       )}
