@@ -30,7 +30,7 @@ backend.addOutput({
         paths: { 
           "landing/*": {
             guest: ["get", "list"],
-            authenticated: ["get", "list", "write", "delete"],
+            authenticated: ["get", "list", "write"],
           },
         },
       }
