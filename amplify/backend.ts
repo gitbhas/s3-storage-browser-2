@@ -25,7 +25,7 @@ backend.addOutput({
     buckets: [
       {
         name: "340b",
-        bucket_name: "ddps-340b-upload",
+        bucket_name: "ddps-pdeintake-landing",
         aws_region: "us-east-1",
         paths: { 
           "landing/*": {
