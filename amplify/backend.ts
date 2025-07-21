@@ -1,4 +1,4 @@
-import { defineBackend } from '@aws-amplify/backend';
+eteimport { defineBackend } from '@aws-amplify/backend';
 import { auth } from './auth/resource';
 import { data } from './data/resource';
 import { defineStorage } from '@aws-amplify/backend';
@@ -30,7 +30,7 @@ backend.addOutput({
         paths: { 
           "landing/*": {
             guest: ["get", "list"],
-            authenticated: ["get", "list", "write"],
+            authenticated: ["get", "list", "write","delete"],
           },
         },
       }
